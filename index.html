@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="az"><head><meta charset="utf-8"><title>Azərbaycan dili quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--tx:#1c1c1a;--mu:#6b6b66;--ac:#2b6cb0;--bd:#ddd9d0;--ok:#2f855a;--no:#c53030;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#171716;--card:#232321;--tx:#eeeeea;--mu:#a3a39c;--ac:#63a4e8;--bd:#3a3a36;--ok:#68d391;--no:#fc8181}}
+:root[data-theme="dark"]{--bg:#171716;--card:#232321;--tx:#eeeeea;--mu:#a3a39c;--ac:#63a4e8;--bd:#3a3a36;--ok:#68d391;--no:#fc8181}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.45 system-ui,sans-serif}
+.w{max-width:640px;margin:0 auto;padding:12px}
+.top{position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;border-bottom:1px solid var(--bd);display:flex;justify-content:space-between;font-weight:600;z-index:5}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--bg);z-index:10}
+.c{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin:12px 0}
+input{width:100%;box-sizing:border-box;padding:12px;margin:6px 0;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font-size:16px}
+button{background:var(--ac);color:#fff;border:0;border-radius:8px;padding:12px 18px;font-size:16px;cursor:pointer}
+label{display:block;padding:8px 10px;margin:5px 0;border:1px solid var(--bd);border-radius:8px;cursor:pointer}
+label.s{border-color:var(--ac);background:color-mix(in srgb,var(--ac) 15%,transparent)}
+label.ok{border-color:var(--ok)}label.no{border-color:var(--no)}
+table.q{border-collapse:collapse;font-size:14px;margin:8px 0}table.q td{border:1px solid var(--bd);padding:4px 6px}
+.big{font-size:44px;font-weight:700;text-align:center}.mu{color:var(--mu);font-size:14px}
+.row{display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--bd)}
+.ow{overflow-x:auto}
+/* yeni dizayn */
+:root{--bg:#f3f0ff;--card:#ffffff;--tx:#241b4b;--mu:#7a72a3;--ac:#7c3aed;--bd:#e4defa;--ok:#16a34a;--no:#e11d48}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#120d26;--card:#1d1640;--tx:#f1ecff;--mu:#a79fd0;--ac:#a78bfa;--bd:#3a2f6e;--ok:#4ade80;--no:#fb7185}}
+:root[data-theme="dark"]{--bg:#120d26;--card:#1d1640;--tx:#f1ecff;--mu:#a79fd0;--ac:#a78bfa;--bd:#3a2f6e;--ok:#4ade80;--no:#fb7185}
+body{background:radial-gradient(circle at top,color-mix(in srgb,var(--ac) 22%,var(--bg)),var(--bg) 60%) fixed;font-family:ui-rounded,"Segoe UI",system-ui,sans-serif}
+.top{background:linear-gradient(90deg,#7c3aed,#ec4899);color:#fff;border:0;border-radius:999px;padding:10px 18px;margin-top:6px;box-shadow:0 6px 18px rgba(124,58,237,.35)}
+.c{border-radius:20px;border:0;padding:18px;box-shadow:0 8px 24px rgba(60,30,140,.12)}
+button{background:linear-gradient(90deg,#7c3aed,#ec4899);border-radius:999px;padding:12px 24px;font-weight:600;box-shadow:0 4px 12px rgba(124,58,237,.35)}
+button:disabled{opacity:.35}
+label{border-radius:14px;border-width:2px;padding:12px;transition:.15s}
+label:hover{border-color:var(--ac)}
+label.s{background:var(--ac);border-color:var(--ac);color:#fff}
+input{border-radius:14px;border-width:2px}
+input:focus{outline:0;border-color:var(--ac)}
+.big{font-size:64px;background:linear-gradient(90deg,#7c3aed,#ec4899);-webkit-background-clip:text;background-clip:text;color:transparent}
+</style></head><body><div class="w">
+<div class="top"><span id="who">👤 —</span><span id="prog"></span></div>
+<div id="app"></div>
+<div class="c"><b>🏆 Nəticələr (hamı görür)</b><div id="lb" class="mu">Yüklənir…</div></div>
+</div>
+<script>
+const T=(h,r)=>`<div class="ow"><table class="q">${h?`<tr>${h.map(x=>`<td><b>${x}</b></td>`).join("")}</tr>`:""}${r.map(x=>`<tr>${x.map(y=>`<td>${y}</td>`).join("")}</tr>`).join("")}</table></div>`;
+const Q=[
+{q:"“Şan” sözünün leksik təhlili ilə bağlı yanlış fikri müəyyən edin.",o:["Mənalarından biri arıların pətəkdə mumdan düzəltdikləri gözcüklər kimi izah edilə bilər.","Yerinə görə “şərəf” sözünü əvəz edə bilər.","Yerinə görə “məşhur” sözünün sinonimi ola bilər.","Üzüm növü kimi işlənmir.","Omonimliyi vardır."],a:2},
+{q:"Hansı cümlədə “sevinmək” sözünün məcazi mənalı qarşılığı işlənmişdir?",o:["Hamı həmişə Mübarizin adını çəkəcək.","Onun susuzluqdan ürəyi yanırdı.","Salmanın dünən boğazından su keçmirdi.","Eldarın nədənsə dili-dodağı qurumuşdur.","Hədiyyə alanda uşağın gözləri parıldadı."],a:4},
+{q:"Cədvəldəki uyğunsuzluğu müəyyən edin.",h:T(null,[["1","“Dalğalanmaq” sözündə eyncinsli samit qoşalığı var.","doğru"],["2","“Çalışqan” sözünün deyilişi ilə yazılışı fərqlənmir.","yanlış"],["3","“Şəfəq” sözünə saitlə başlayan şəkilçi artırıldıqda q-ğ əvəzlənməsi baş verir.","doğru"],["4","“Nərə” sözünün iki tələffüz forması vardır.","yanlış"],["5","“Deformasiya” sözünün deyilişi ilə yazılışı arasında bir fərqli məqam var.","doğru"]]),o:["1, 4, 5","2, 3, 4","1, 2, 5","3, 4, 5","1, 2, 3"],a:1},
+{q:"Yazılışı səhv olan sözü müəyyən edin.",o:["riayət","detektiv","cinayət","iaşə","əzimkarlıq"],a:4},
+{q:"Nümunələrdən biri omonimlik xüsusiyyəti daşıyaraq əlamət və hərəkət bildirən söz kimi işlənə bilir:",o:["çəp","daş","çaş","yaş","çap"],a:2},
+{q:"Cədvəldəki uyğunluğu müəyyən edin.",h:T(["Frazeoloji birləşmə","Sinonimi"],[["1. köks ötürmək","ah çəkmək"],["2. ağ yuyub qara sərmək","əlini ağdan qaraya vurmamaq"],["3. cana gəlmək","boğaza yığılmaq"],["4. dilə-dişə düşmək","dişi bağırsağını kəsmək"]]),o:["3, 4","1, 3","2, 3","2, 4","1, 2"],a:1},
+{q:"“Çatlamaq” sözündəki samitlərlə bağlı uyğunluğu müəyyən edin.",h:"<p>1. 3-cü samit<br>2. 5-ci samit<br><br>a. Kar qarşılığı var.<br>b. Qarşılığı yoxdur.<br>c. “Çarmıx” sözünün son samiti ilə tələffüzü eynidir.<br>d. [t] samitinin cingiltili qarşılığıdır.<br>e. [ğ] samitinin kar qarşılığıdır.</p>",o:["1-c, e; 2-a, b","1-a, b; 2-c, e","1-e, 2-b, d","1-d, e; 2-c","1-a, d; 2-c, e"],a:4},
+{q:"Hansı birləşmənin birinci tərəfinin son samiti öz kar qarşılığı kimi tələffüz olunur?",o:["kitab evi","dərs otağı","tüfəng lüləsi","kəpənək qanadları","çörək ətri"],a:2},
+{q:"Hər üç xüsusiyyətə uyğun nümunələri müəyyən edin.",h:"<p>• Omonim kimi işlənə bilir.<br>• Çoxmənalı söz kimi də işlənə bilir.<br>• Sinonimi var.<br><br>1. dava &nbsp; 2. at &nbsp; 3. alın &nbsp; 4. bel &nbsp; 5. qanuni</p>",o:["2, 3, 4","2, 4, 5","1, 3, 5","1, 2, 3","1, 4, 5"],a:0},
+{q:"Hansı cümlədə “qəlbi qırılmaq” ifadəsinin həqiqi mənalı qarşılığı işlənmişdir?",o:["O gün Elxanın qaşqabağı yer süpürürdü.","Səadət məndən incimişdir.","Zaur mənə qəzəblənmişdir.","Günay təbiətin gözəlliyinə heyranlıq duyurdu.","Nailə bu gün narahat idi."],a:1},
+{q:"Cədvələ uyğun sözləri müəyyən edin.",h:T(["Tərkibində səs düşümü olsa da, hərf və səs sayı eynidir.","Tərkibində səs düşümü var, səs artımı yoxdur."],[["1. nəzakətlə","4. dostlarla"],["2. məqsədyönlülük","5. nəfilə"],["3. aidiyyət","6. sərbəstlik"]]),o:["1, 4, 6","1, 3, 5","2, 4","3, 6","2, 5"],a:3},
+{q:"“Yağış” və “yağlı” sözləri ilə bağlı yanlış fikirlərdir:",h:"<p>1. Yazılışı və deyilişi fərqlənməyən sözlərdir.<br>2. Vurğusuna görə mənaları dəyişir.<br>3. Sualları müxtəlifdir.<br>4. Ümumi qrammatik mənaları eynidir.</p>",o:["1, 3","2, 3","2, 4","3, 4","1, 2"],a:2},
+{q:"Cümlədə altından xətt çəkilmiş sözlə bağlı yanlış fikri müəyyən edin.",h:"<p><i>Biz küçədə bir <u>uşaq</u> gördük.</i></p>",o:["Konkret isimdir.","Adlıq halda deyil.","Fərqli tələffüz olunur.","Təsirlik hal şəkilçisi ilə də işlənə bilər.","“Kim?” sualına cavab verir."],a:4},
+{q:"“K” samitinin müxtəlif səslər ifadə etdiyi söz hansı cümlənin tərkibindədir?",o:["Böyük ədalətsizlik etmək adillərin işi deyil.","İşləyərkən də, əylənərkən də heç kəsə mane olma.","Əlindəki işi qurtarmadan başqasına girişmə, çünki hər ikisi yarımçıq qalar.","Pislik görməkdən deyil, pisliklə məşğul olmaqdan qorxmalıyıq.","Kiçik işlərlə məşğul olanlar çox vaxt böyük və ciddi işlər görə bilmirlər."],a:4},
+{q:"Hansı sözlərin formasını dəyişmədən – olduğu kimi ismin iki müxtəlif halında işlətmək olar?",h:"<p>1. taleyin &nbsp; 2. mənşəyim<br>3. mənbəyini &nbsp; 4. mənbə</p>",o:["1, 3","1, 2","2, 3","3, 4","1, 4"],a:4}
+];
+const L="ABCDE",app=document.getElementById("app");
+let name="",i=0,ans=[],db=null;
+function msg(n){return n<=5?"Kül sənin təpənə olsun 💀":n<=8?"Ehh, biraz zaysan 😬":n<=11?"Bacararsan 👍":n<=14?"Birazcıq qalıb 🔥":"Halaldı, xalqın uşağısan 👑"}
+function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
+function start(){app.innerHTML=`<div class="c"><h3>Azərbaycan dili – 15 sual</h3><input id="ad" placeholder="Ad" autocomplete="given-name"><input id="soyad" placeholder="Soyad" autocomplete="family-name"><button onclick="go()">Başla</button></div>`;document.getElementById("prog").textContent=""}
+function go(){const a=ad.value.trim(),s=soyad.value.trim();if(!a||!s){alert("Ad və soyadı yaz.");return}name=a+" "+s;who.textContent="👤 "+name;i=0;ans=[];show()}
+function show(){upd();
+app.innerHTML=Q.map((x,n)=>`<div class="c" id="q${n}"><b>${n+1}. ${x.q}</b>${x.h||""}${x.o.map((t,k)=>`<label onclick="pick(${n},${k})"><b>${L[k]})</b> ${t}</label>`).join("")}</div>`).join("")+`<div class="c" style="text-align:center"><button onclick="nav()">Testi bitir</button></div>`;window.scrollTo(0,0)}
+function upd(){document.getElementById("prog").textContent=ans.filter(v=>v!=null).length+"/15"}
+function pick(n,k){ans[n]=k;document.querySelectorAll("#q"+n+" label").forEach((l,j)=>l.classList.toggle("s",j===k));upd()}
+function nav(){const m=Q.findIndex((x,n)=>ans[n]==null);if(m>=0){alert((m+1)+"-ci sual cavabsızdır.");document.getElementById("q"+m).scrollIntoView({behavior:"smooth",block:"center"});return}finish();window.scrollTo(0,0)}
+async function finish(){const sc=Q.reduce((n,x,k)=>n+(ans[k]===x.a?1:0),0);
+document.getElementById("prog").textContent="";
+app.innerHTML=`<div class="c"><div class="mu" style="text-align:center">${esc(name)}</div><div class="big">${sc}/15</div><p style="text-align:center;font-size:20px">${msg(sc)}</p>
+${Q.map((x,k)=>`<div class="row"><span>${k+1}. ${ans[k]===x.a?"✅":"❌ sənin: "+L[ans[k]]+", düz: "+L[x.a]}</span></div>`).join("")}
+<p><button onclick="start()">Yenidən</button></p></div>`;
+if(db){try{await db.collection("scores").add({name,score:sc,ts:Date.now()})}catch(e){console.error(e)}}}
+function render(rows){const el=document.getElementById("lb");
+if(!rows.length){el.textContent="Hələ heç kim yazmayıb.";return}
+el.innerHTML=rows.map(r=>`<div class="row"><span>${esc(r.name)}<br><span class="mu">${new Date(r.ts).toLocaleString("az-AZ")}</span></span><b>${r.score}/15</b></div>`).join("")}
+start();
+(async()=>{try{const c=await claude.use("db");if(!c){document.getElementById("lb").textContent="Nəticə lövhəsi əlçatan deyil.";return}
+db=c;db.collection("scores").orderBy("ts","desc").limit(50).onSnapshot(s=>render(s.docs.map(d=>d.data())),e=>{document.getElementById("lb").textContent="Lövhə yüklənmədi."})}catch(e){document.getElementById("lb").textContent="Lövhə yüklənmədi."}})();
+</script></body></html>
